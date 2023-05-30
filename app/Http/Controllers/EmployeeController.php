@@ -33,6 +33,11 @@ class EmployeeController extends BaseApiController
         $fn($request);
     }
 
+    public function beforeUpdate(Request $request, string $id, callable $fn): void
+    {
+        $fn($id, $request);
+    }
+
     public function beforeDelete(Request $request, string $id, callable $fn): void
     {
         $fn($request->get('id'));

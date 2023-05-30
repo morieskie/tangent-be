@@ -31,6 +31,15 @@ Route::post('/employees/{empoyeeId}/skills', function (Request $request, string 
     return app(EmployeeSkillController::class)->store($req);
 });
 
+Route::put('/employees/{empoyeeId}/skills/{employeeSkillId}', function (Request $request, string $empoyeeId, string $employeeSkillId) {
+    $request->merge([
+        'employee_id' => $empoyeeId,
+        'employeeSkillId' => $employeeSkillId
+    ]);
+    $req = app(StoreEmployeeSkillRequest::class, $request->all());
+    return app(EmployeeSkillController::class)->update($req, $employeeSkillId);
+});
+
 Route::delete('/employees/{empoyeeId}/skills/{employeeSkillId}', function (Request $request, string $empoyeeId, string $employeeSkillId) {
     $request->merge([
         'employee_id' => $empoyeeId,

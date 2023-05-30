@@ -85,7 +85,9 @@ abstract class BaseApiController extends Controller
         $status = 201;
         $data = null;
         try {
-            $data = $this->repository->update($id, $request->collect());
+            $this->beforeUpdate($request, $id, function ($id, $request) use (&$data) {
+                $data = $this->repository->update($id, $request->collect());
+            });
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $th) {
             $status = 404;
         } catch (\Throwable $th) {
@@ -120,6 +122,8 @@ abstract class BaseApiController extends Controller
     }
 
     abstract public function beforeCreate(Request $request, callable $fn): void;
+
+    abstract public function beforeUpdate(Request $request, string $id, callable $fn): void;
 
     abstract public function beforeDelete(Request $request, string $id, callable $fn): void;
 }

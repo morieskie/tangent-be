@@ -34,6 +34,12 @@ class EmployeeSkillController extends BaseApiController
     }
 
 
+    public function beforeUpdate(Request $request, string $id, callable $fn): void
+    {
+        $fn($request->get('employeeSkillId'), $request);
+    }
+
+
     public function beforeDelete(Request $request, string $id, callable $fn): void
     {
         $fn($request->get('employeeSkillId'));

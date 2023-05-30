@@ -9,7 +9,6 @@ class Employee extends Model
 {
     use HasFactory;
 
-    // protected $casts = ['id' => 'string'];
     protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $incrementing = false;
