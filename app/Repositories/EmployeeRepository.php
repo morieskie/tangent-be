@@ -46,6 +46,8 @@ class EmployeeRepository
 
     public function create(Collection $data)
     {
+        $code = fake()->regexify('[A-Z]{2}[0-9]{4}');
+        $data->put('id', $code);
         $attributes = $data->only($this->model->fillable)->toArray();
         return $this->model->create($attributes);
     }

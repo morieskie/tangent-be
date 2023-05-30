@@ -30,8 +30,6 @@ class EmployeeController extends BaseApiController
 
     public function beforeCreate(Request $request, callable $fn): void
     {
-        $code = fake()->regexify('[A-Z]{2}[0-9]{4}');
-        $request->merge(['code' => $code]);
         $fn($request);
     }
 

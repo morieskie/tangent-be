@@ -9,6 +9,7 @@ class EmployeeSkill extends Model
 {
     use HasFactory;
 
+    protected $casts = ['employee_id' => 'string'];
     protected $with = ['skill'];
 
     public $fillable = [

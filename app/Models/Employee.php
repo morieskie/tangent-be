@@ -9,11 +9,13 @@ class Employee extends Model
 {
     use HasFactory;
 
-    protected $casts = ['code' => 'string'];
-    protected $primaryKey = 'code';
+    // protected $casts = ['id' => 'string'];
+    protected $primaryKey = 'id';
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     public $fillable = [
-        'code',
+         'id',
         'first_name',
         'last_name',
         'email',
@@ -29,6 +31,6 @@ class Employee extends Model
 
     public function skills()
     {
-        return $this->hasMany(EmployeeSkill::class, 'employee_id', 'id');
+        return $this->hasMany(EmployeeSkill::class);
     }
 }
