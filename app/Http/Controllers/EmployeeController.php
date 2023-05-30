@@ -7,6 +7,10 @@ use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Employee;
 use App\Repositories\EmployeeRepository;
 use Illuminate\Http\Request;
+use ReverseRegex\Lexer;
+use ReverseRegex\Random\SimpleRandom;
+use ReverseRegex\Parser;
+use ReverseRegex\Generator\Scope;
 
 class EmployeeController extends BaseApiController
 {
@@ -26,6 +30,8 @@ class EmployeeController extends BaseApiController
 
     public function beforeCreate(Request $request, callable $fn): void
     {
+        $code = fake()->regexify('[A-Z]{2}[0-9]{4}');
+        $request->merge(['code' => $code]);
         $fn($request);
     }
 

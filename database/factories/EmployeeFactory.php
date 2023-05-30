@@ -26,6 +26,7 @@ class EmployeeFactory extends Factory
         fake()->addProvider(new \Faker\Provider\Internet(fake()));
 
         return [
+            'code' => fake()->regexify('[A-Z]{2}[0-9]{4}'),
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'contact_number' => fake()->phoneNumber(),
